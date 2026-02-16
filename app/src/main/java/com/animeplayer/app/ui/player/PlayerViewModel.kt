@@ -71,6 +71,9 @@ class PlayerViewModel @Inject constructor(
             is PlayerIntent.ShowSubtitleDialog -> {
                 _uiState.value = _uiState.value.copy(showSubtitleDialog = intent.show)
             }
+            is PlayerIntent.ShowAudioSettings -> {
+                _uiState.value = _uiState.value.copy(showAudioSettings = intent.show)
+            }
         }
     }
 
@@ -89,10 +92,12 @@ sealed class PlayerIntent {
     data object ToggleControls : PlayerIntent()
     data class SelectSubtitle(val track: SubtitleTrack) : PlayerIntent()
     data class ShowSubtitleDialog(val show: Boolean) : PlayerIntent()
+    data class ShowAudioSettings(val show: Boolean) : PlayerIntent()
 }
 
 data class PlayerUiState(
     val title: String = "",
     val showControls: Boolean = true,
-    val showSubtitleDialog: Boolean = false
+    val showSubtitleDialog: Boolean = false,
+    val showAudioSettings: Boolean = false
 )

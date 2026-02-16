@@ -22,6 +22,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.PlayerView
 import com.animeplayer.app.player.PlayerManager
+import com.animeplayer.app.ui.audio.AudioSettingsSheet
 
 @OptIn(UnstableApi::class)
 @Composable
@@ -106,6 +107,13 @@ fun PlayerScreen(
                     viewModel.handleIntent(PlayerIntent.SelectSubtitle(track))
                     viewModel.handleIntent(PlayerIntent.ShowSubtitleDialog(false))
                 }
+            )
+        }
+
+        // Audio Settings Sheet
+        if (uiState.showAudioSettings) {
+            AudioSettingsSheet(
+                onDismiss = { viewModel.handleIntent(PlayerIntent.ShowAudioSettings(false)) }
             )
         }
     }

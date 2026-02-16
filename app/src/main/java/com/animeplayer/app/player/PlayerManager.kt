@@ -12,6 +12,7 @@ import androidx.media3.common.Tracks
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
+import com.animeplayer.app.player.audio.AudioEffectManager
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -22,7 +23,8 @@ import javax.inject.Singleton
 
 @Singleton
 class PlayerManager @Inject constructor(
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
+    private val audioEffectManager: AudioEffectManager
 ) {
     private var exoPlayer: ExoPlayer? = null
     
@@ -49,6 +51,12 @@ class PlayerManager @Inject constructor(
 
         override fun onTracksChanged(tracks: Tracks) {
             updateSubtitleTracks(tracks)
+        }
+
+        override fun onAudioSessionIdChanged(audioSessionId: Int) {
+            if (audioSessionId != C.AUDIO_SESSION_ID_UNSET) {
+                audioEffectManager.attachToSession(audioSessionId)
+            }
         }
     }
 
@@ -103,6 +111,7 @@ class PlayerManager @Inject constructor(
             release()
         }
         exoPlayer = null
+        audioEffectManager.release()
     }
 
     fun getPlayer(): ExoPlayer? = exoPlayer

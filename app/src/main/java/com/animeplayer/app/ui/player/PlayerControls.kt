@@ -19,6 +19,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ClosedCaption
+import androidx.compose.material.icons.filled.Equalizer
 import androidx.compose.material.icons.filled.FastForward
 import androidx.compose.material.icons.filled.FastRewind
 import androidx.compose.material.icons.filled.Pause
@@ -91,6 +92,15 @@ fun PlayerControls(
                     modifier = Modifier.weight(1f).padding(start = 16.dp)
                 )
                 
+                // Audio EQ Button
+                IconButton(onClick = { onIntent(PlayerIntent.ShowAudioSettings(true)) }) {
+                    Icon(
+                        imageVector = Icons.Default.Equalizer,
+                        contentDescription = "Audio Settings",
+                        tint = Color.White
+                    )
+                }
+
                 // Subtitle Button
                 IconButton(onClick = { onIntent(PlayerIntent.ShowSubtitleDialog(true)) }) {
                     Icon(
