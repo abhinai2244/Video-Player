@@ -1,0 +1,43 @@
+# Folders and files to ignore from Android Studio
+
+# Built application files
+*.apk
+*.aab
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Built C/C++ libraries
+/build/
+/app/build/
+
+# Local configuration files (sdk path, etc)
+/local.properties
+
+# Log Files
+/captures/
+
+# Android Studio Profiler files
+*.hprof
+
+# IntelliJ IDEA files
+.idea/
+
+# Gradle files
+.gradle/
+/gradle/
+/gradlew
+/gradlew.bat
+
+# Keystore files
+*.jks
+*.keystore
+
+# Google Services (if you have them)
+/app/google-services.json
+
+#ignore all .iml files
+**/*.iml
+
+# Ignore environment variables
+.env
